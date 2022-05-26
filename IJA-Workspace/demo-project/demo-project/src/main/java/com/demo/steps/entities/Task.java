@@ -2,13 +2,41 @@ package com.demo.steps.entities;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+
+
+@Entity
+@Table(name = "tasks" )
 public class Task {
 
+    @Id
+    @Column (name ="id")
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private long id;
+    
+    @Column(name ="title")
     private String title;
+    
+    @Column(name ="description")
     private String description;
+    
+    @Column(name ="is_active")
     private Boolean active;
+
+    @Column(name ="owner_id")
+    private String ownerId;
+    
+    @Column(name ="created_at")
     private LocalDateTime createdAt;
+    
+    @Column(name ="updated_at")
     private LocalDateTime updatedAt;
 
     public long getId() {
@@ -36,6 +64,14 @@ public class Task {
     }
 
     
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
     public Boolean getActive() {
         return active;
     }
