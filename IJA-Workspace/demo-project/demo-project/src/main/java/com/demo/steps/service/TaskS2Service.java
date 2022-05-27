@@ -25,7 +25,7 @@ public class TaskS2Service {
 		newTask.setActive(false);
 		newTask.setCreatedAt(LocalDateTime.now());
 		long id = taskList.size() + 1;
-		newTask.setId(id);
+		newTask.setTaskId(id);
 		taskList.add(newTask);
 		return newTask;
 	}
@@ -34,7 +34,7 @@ public class TaskS2Service {
 	public Optional<Task> getTaskById( Long taskId) {
 		return taskList
 			.stream()
-			.filter( current -> taskId == current.getId() )
+			.filter( current -> taskId == current.getTaskId() )
 			.findFirst()
 			.map( task -> task );
 	}
@@ -44,7 +44,7 @@ public class TaskS2Service {
 	public boolean deleteTask( Long taskId) {
 		return taskList
 					.stream()
-					.filter( current -> taskId == current.getId())
+					.filter( current -> taskId == current.getTaskId())
 					.findFirst()
 					.map(task ->{
 						taskList.remove(task);
@@ -58,7 +58,7 @@ public class TaskS2Service {
 	public Optional<Task> updateTask( Long taskId, Task updatedTask) {
 		return taskList
 					.stream()
-					.filter( current -> taskId == current.getId())
+					.filter( current -> taskId == current.getTaskId())
 					.findFirst()
 					.map( task ->{
 						task.setTitle( updatedTask.getTitle());

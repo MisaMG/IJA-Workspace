@@ -36,7 +36,7 @@ public class TaskS1Controller {
 		newTask.setActive(false);
 		newTask.setCreatedAt(LocalDateTime.now());
 		long id = taskList.size() + 1;
-		newTask.setId(id);
+		newTask.setTaskId(id);
 		taskList.add(newTask);
 		return ResponseEntity.status(HttpStatus.CREATED).body(newTask);
 	}
@@ -45,7 +45,7 @@ public class TaskS1Controller {
 	public ResponseEntity<Task> fetchTaskById( @PathVariable("taskId") Long taskId) {
 		return taskList
 			.stream()
-			.filter( current -> taskId == current.getId() )
+			.filter( current -> taskId == current.getTaskId() )
 			.findFirst()
 			.map( task -> ResponseEntity.ok().body(task) )
 			.orElse( ResponseEntity.status(HttpStatus.NOT_FOUND).build());
@@ -59,7 +59,7 @@ public class TaskS1Controller {
 	public ResponseEntity<?> deleteTask(@PathVariable("taskId")  Long taskId) {
 		return taskList
 					.stream()
-					.filter( current -> taskId == current.getId())
+					.filter( current -> taskId == current.getTaskId())
 					.findFirst()
 					.map(task ->{
 						taskList.remove(task);
@@ -73,7 +73,7 @@ public class TaskS1Controller {
 	public ResponseEntity<Task> putTask(@PathVariable("taskId") Long taskId, Task updatedTask) {
 		return taskList
 					.stream()
-					.filter( current -> taskId == current.getId())
+					.filter( current -> taskId == current.getTaskId())
 					.findFirst()
 					.map( task ->{
 						task.setTitle( updatedTask.getTitle());

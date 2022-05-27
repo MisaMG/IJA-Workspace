@@ -19,7 +19,7 @@ public class Task {
     @Id
     @Column (name ="id")
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private long id;
+    private long taskId;
     
     @Column(name ="title")
     private String title;
@@ -39,12 +39,12 @@ public class Task {
     @Column(name ="updated_at")
     private LocalDateTime updatedAt;
 
-    public long getId() {
-        return id;
+    public long getTaskId() {
+        return taskId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setTaskId(long taskId) {
+        this.taskId = taskId;
     }
 
     public String getTitle() {
@@ -63,7 +63,6 @@ public class Task {
         this.description = description;
     }
 
-    
     public String getOwnerId() {
         return ownerId;
     }
@@ -95,4 +94,11 @@ public class Task {
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+    @Override
+    public String toString() {
+        return "Task [active=" + active + ", createdAt=" + createdAt + ", description=" + description + ", id=" + taskId
+                + ", ownerId=" + ownerId + ", title=" + title + ", updatedAt=" + updatedAt + "]";
+    }
+
 }
