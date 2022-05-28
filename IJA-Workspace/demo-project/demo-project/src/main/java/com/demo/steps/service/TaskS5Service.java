@@ -15,14 +15,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 
+
+
 @Service
-public class TaskS4Service {
+public class TaskS5Service {
 
 	private final TaskRepository repository;
 
-	private final Log LOGGER = LogFactory.getLog(TaskS4Service.class);
+	private final Log LOGGER = LogFactory.getLog(TaskS5Service.class);
 	
-	public TaskS4Service(@Autowired TaskRepository repository) {
+	public TaskS5Service(@Autowired TaskRepository repository) {
 		this.repository = repository;
 	}
 
@@ -60,6 +62,15 @@ public class TaskS4Service {
 		}
 	}
 
+	public List<Task> findByOwnerId( String ownerId){
+		return repository.findByOwnerId(ownerId);
+	}
+
+	public List<Task> findByOwnerIdAndActive ( String ownerId, Boolean status ){
+		return repository.findByOwnerIdAndActive(ownerId, status);
+
+		//return repository.buscarTodasLasTareasPorPropietarioYEstatus (ownerId, active );
+	}
 	
 	// Response 200 ok
 
